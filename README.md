@@ -34,3 +34,55 @@ Projeto de extração, transformação e carga (ETL) de dados de suplementos ali
 Python 3.12+
 Git
 DBeaver (Opcional para visualização)
+
+
+
+# Clone o repositório
+git clone https://github.com/seu-user/mercadolivre-etl.git
+
+# Configure ambiente virtual
+python -m venv venv
+source venv/bin/activate  # Linux/Mac
+venv\Scripts\activate     # Windows
+
+# Instale dependências
+pip install -r requirements.txt
+
+# Configure variáveis de ambiente
+cp .env.example .env
+
+
+
+# Execução completa do pipeline
+python src/main.py --pages 5 --output-format csv+db
+
+# Opções disponíveis
+--pages        Número de páginas a processar (padrão: 5)
+--output-format Formato de saída (csv, db, ou ambos)
+--log-level    Nível de detalhamento dos logs (DEBUG, INFO, WARN)
+
+
+
+-- Exemplo de consulta analítica
+SELECT 
+  marca,
+  ROUND(AVG(preco),2) AS preco_medio,
+  COUNT(*) AS produtos
+FROM produtos
+WHERE avaliacao >= 4.0
+GROUP BY marca
+ORDER BY preco_medio DESC;
+
+
+
+mercadolivre-etl/
+├── src/                  # Lógica principal
+│   ├── extraction/       # Módulos de scraping
+│   ├── transformation/   # Validação e limpeza
+│   └── load/             # Carga em banco de dados
+├── data/                 # Armazenamento local
+│   ├── raw/              # Dados brutos (não versionado)
+│   └── processed/        # Dados tratados (não versionado)
+├── docs/                 # Documentação técnica
+├── tests/                # Testes unitários
+└── .github/              # Fluxos CI/CD
