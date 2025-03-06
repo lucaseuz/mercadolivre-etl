@@ -35,7 +35,7 @@ Python 3.12+
 Git
 DBeaver (Opcional para visualização)
 
-
+Instalação
 
 # Clone o repositório
 git clone https://github.com/seu-user/mercadolivre-etl.git
@@ -52,6 +52,7 @@ pip install -r requirements.txt
 cp .env.example .env
 
 
+🕹️ Uso
 
 # Execução completa do pipeline
 python src/main.py --pages 5 --output-format csv+db
@@ -61,7 +62,7 @@ python src/main.py --pages 5 --output-format csv+db
 --output-format Formato de saída (csv, db, ou ambos)
 --log-level    Nível de detalhamento dos logs (DEBUG, INFO, WARN)
 
-
+🗃️ Banco de Dados
 
 -- Exemplo de consulta analítica
 SELECT 
@@ -74,6 +75,7 @@ GROUP BY marca
 ORDER BY preco_medio DESC;
 
 
+🧱 Estrutura do Projeto
 
 mercadolivre-etl/
 ├── src/                  # Lógica principal
